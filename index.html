@@ -34,7 +34,7 @@
             <div class="w3-container w3-cell w3-cell-middle m12 w3-form">
                 <div class="w3-form w3-center">
                     <label for="input-number">Input number</label>
-                    <input class="w3-input w3-border w3-round-large" id="input-number"
+                    <input min="1" max="3999" class="w3-input w3-border w3-round-large" id="input-number"
                         placeholder="Input number here..." type="number" />
                     <button class="w3-btn w3-blue w3-margin w3-round-large" onclick="getRoman('')">Convert</button>
                 </div>
@@ -114,15 +114,15 @@
             return roman[i] + convertToRoman(num - nums[i]);
         }
         const getRoman = (num) => {
-            if(num < 1 || num > 3999){
-                document.getElementById('result').innerText = `Only converts integers between 1-3999 inclusively`;
-            };
             if (num == '') {
-                num = Number(document.getElementById('input-number').value).floor();
-                console.log(num);
+                num = Math.floor(Number(document.getElementById('input-number').value));
+            };
+            if (num < 1 || num > 3999) {
+                document.getElementById('result').innerText = `Only converts integers between 1-3999 inclusively`;
+            } else {
+                const roman = convertToRoman(num);
+                document.getElementById('result').innerText = `Converted ${num} to ${roman}`;
             }
-            const roman = convertToRoman(num);
-            document.getElementById('result').innerText = `Converted ${num} to ${roman}`;
         }
     </script>
 </body>
