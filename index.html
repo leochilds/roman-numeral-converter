@@ -7,14 +7,102 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Roman Numeral Converter</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        main {
+            display: block;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .w3-form {
+            display: block;
+            width: 33%;
+            min-width: 400px;
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
+    <main>
+        <header class="w3-center w3-margin">
+            <h1>Roman Numeral Converter</h1>
+            <p>This is a roman numeral converter that will take a number and return the roman numeral equivalent from
+                numbers 1-3999 inclusive. Non-numerical input will be treated as a 0.</p>
+        </header>
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-cell-middle m12 w3-form">
+                <div class="w3-form w3-center">
+                    <label for="input-number">Input number</label>
+                    <input class="w3-input w3-border w3-round-large" id="input-number"
+                        placeholder="Input number here..." type="number" />
+                    <button class="w3-btn w3-blue w3-margin w3-round-large" onclick="getRoman('')">Convert</button>
+                </div>
+            </div>
+        </div>
 
+        <div class="w3-cell-row">
+            <div class="w3-container w3-cell w3-cell-middle">
+                <div class="w3-panel w3-pale-blue w3-border">
+                    <h3>Results</h3>
+                    <p id="result">Results will display here</p>
+                </div>
+                <p class="w3-center">Can't pick a string? Click a button below to try one of the predefined strings.</p>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(2)">Check
+                    2</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(3)">Check
+                    3</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(4)">Check
+                    4</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(5)">Check 5</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(9)">Check 9</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(12)">Check 12</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(16)">Check
+                    16</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(29)">Check
+                    29</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(44)">Check 44</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(45)">Check 45</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(68)">Check 68</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(83)">Check
+                    83</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(97)">Check
+                    97</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(99)">Check
+                    99</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(400)">Check
+                    400</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(500)">Check
+                    500</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(501)">Check
+                    501</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(649)">Check
+                    649</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(798)">Check
+                    798</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(891)">Check
+                    891</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(1000)">Check
+                    1000</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(1004)">Check
+                    1004</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(1006)">Check
+                    1006</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(1023)">Check
+                    1023</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(2014)">Check
+                    2014</button>
+                <button class="w3-btn w3-blue w3-round-large w3-margin" onclick="getRoman(3999)">Check
+                    3999</button>
+            </div>
+        </div>
+
+
+    </main>
     <script>
         let i = 14;
-        convertToRoman = (num) => {
-            if (num == 0) {
+        const convertToRoman = (num) => {
+            if (num == 0 || num == NaN) {
                 i = 14;
                 return '';
             }
@@ -24,6 +112,17 @@
                 i--;
             }
             return roman[i] + convertToRoman(num - nums[i]);
+        }
+        const getRoman = (num) => {
+            if(num < 1 || num > 3999){
+                document.getElementById('result').innerText = `Only converts integers between 1-3999 inclusively`;
+            };
+            if (num == '') {
+                num = Number(document.getElementById('input-number').value).floor();
+                console.log(num);
+            }
+            const roman = convertToRoman(num);
+            document.getElementById('result').innerText = `Converted ${num} to ${roman}`;
         }
     </script>
 </body>
