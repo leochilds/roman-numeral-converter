@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Roman Numeral Converter</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+    <script>
+        let i = 14;
+        convertToRoman = (num) => {
+            if (num == 0) {
+                i = 14;
+                return '';
+            }
+            const nums = [1, 2, 3, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+            const roman = ["I", "II", "III", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+            while (num < nums[i]) {
+                i--;
+            }
+            return roman[i] + convertToRoman(num - nums[i]);
+        }
+    </script>
+</body>
+
+</html>
